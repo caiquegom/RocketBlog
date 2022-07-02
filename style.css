@@ -1,0 +1,423 @@
+/* == GLOBAL ======================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --purple-bg: hsl(275, 81%, 14%);
+    --dark-bg: hsl(275, 100%, 8%);
+    --button-bg: hsl(275, 41%, 59%);
+    --button-active: hsl(275, 28%, 47%);
+    --white: hsl(0, 0%, 100%);
+    --light-purple: hsl(273, 100%, 98%);
+    --green: hsl(119, 100%, 65%);
+    --black: hsl(0, 0%, 0%);
+
+
+    --poppins: 'Poppins', sans-serif;
+    --roboto: 'Roboto', sans-serif;
+
+    font-size: 62.5%;
+    /* Essa definição faz com que 1rem = 0.1px (facilita o cálculo) */
+}
+
+body {
+    font-size: 1.6rem;
+    text-align: center;
+    font-family: var(--roboto);
+    background-color: var(--light-purple);
+    /* background-color: rgb(161, 165, 168); */
+    overflow: overlay;
+}
+
+.wrapper {
+    width: min(76.8rem, 80%);
+    margin-inline: auto;
+}
+
+img {
+    width: 100%;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* == NAV ======================================= */
+nav{
+    background-color: var(--purple-bg);
+    padding-block: 3.2rem 6.4rem;
+    width: 100%;
+    position: relative;
+}
+
+nav .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .wrapper #open-menu {
+    background: none;
+    border: none;
+}
+
+nav .wrapper #close-menu {
+    background: none;
+    border: none;
+    display: none;
+}
+
+nav .menu {
+    display: none;
+}
+
+/* == MENU-EXPANDED ======================================= */
+body.menu-expanded {
+    overflow: hidden;
+    background-color: var(--purple-bg);
+}
+
+/* > -> seleciona todos os elementos do 1º nível */
+/* :not() -> pseudoclasse de exclusão */
+body.menu-expanded > :not(nav) {
+    display: none;
+}
+
+body.menu-expanded nav #open-menu {
+    display: none;
+}
+
+body.menu-expanded nav #close-menu {
+    display: block;
+}
+
+body.menu-expanded .menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+}
+
+body.menu-expanded .menu ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+body.menu-expanded .menu ul li a{
+    color: var(--white);
+    font-size: 2.5rem;
+    font-weight: 400;
+}
+
+body.menu-expanded .menu ul li a:hover {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+body.menu-expanded .menu .search {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    /* width: 30rem;
+    height: 4.4rem; */
+
+    box-sizing: border-box;
+}
+
+body.menu-expanded .menu .search #search-box {
+    width: 23rem;
+    height: 4.4rem;
+    padding-left: 2.5rem;
+    
+    border: none;
+    border-radius: 0.4rem 0 0 0.4rem;
+
+    color: var(--white);
+    font-family: var(--roboto);
+    background-color: var(--dark-bg);
+}
+
+/* ::placeholder -> seletor do placeholder */
+body.menu-expanded .menu .search #search-box::placeholder {
+    color: var(--light-purple);
+}
+
+body.menu-expanded .menu .search button {
+    background-color: var(--button-bg);
+    border: none;
+
+    border-radius: 0 0.4rem 0.4rem 0;
+    width: 7rem;
+    height: 4.4rem;
+}
+
+body.menu-expanded .menu .search button img {
+    width: 2.4rem;
+    height: 2.4rem
+}
+
+/* == HEADER ======================================= */
+header {
+    padding-bottom: 2rem;
+    background-color: var(--purple-bg);
+    border-top: var(--purple-bg) solid;
+}
+
+header .preview {
+    text-align: left;
+}
+
+header .preview h1 a {
+    color: var(--button-bg);
+    font-size: 2.4rem;
+    font-family: var(--poppins);
+    line-height: 150%;
+}
+
+header .preview h1 a:hover {
+    text-decoration: underline;
+}
+
+header .preview p {
+    color: var(--light-purple);
+    font-size: 1.6rem;
+    line-height: 2.7rem;
+    margin-block: 1.6rem 2.4rem;
+}
+
+header .preview a {
+    color: var(--button-bg);
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-decoration: none;
+    line-height: 150%;
+
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+
+    margin-bottom: 0.8rem;
+}
+
+header .preview a:hover {
+    text-decoration: underline
+}
+
+/* == HORIZONTAL-ROW ======================================= */
+#horizontal-row {
+    width: 100%;
+    height: 0.6rem;
+    background-color: var(--green);
+}
+
+/* == SECTION ======================================= */
+section .preview {
+    padding-block: 2rem;
+    text-align: left;
+    border-bottom: 0.2rem solid hsl(271, 100%, 95%);
+}
+
+section .publicationDate {
+    line-height: 1.9rem;
+}
+
+section h2{
+    font-size: 2.4rem;
+    line-height: 150%;
+    margin-block: 0.8rem;
+}
+
+section h2 a {
+    color: var(--purple-bg);
+}
+
+section p {
+    color: var(--black);
+    font-size: 1.6rem;
+    line-height: 150%;
+
+}
+
+
+@media (min-width: 1024px) {
+    /* ======= GLOBAL ======= */
+    
+    .wrapper {
+        width: min(117rem, 90%);
+        margin-inline: auto;
+    }   
+
+    /* ======= NAV ======= */
+
+    nav {
+        padding-block: 6.4rem;
+        margin: 0;
+    }
+
+    nav .wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    nav .menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 68%;
+    }
+
+    nav button:not(.search button) {
+        display: none;
+    }
+
+    nav .menu ul {
+        list-style: none;
+        display: flex;
+        gap: 3.2rem;
+        font-size: 1.8rem;
+        line-height: 2rem;
+    }
+
+    nav .menu ul li a{
+        color: var(--white);  
+    }
+
+    nav .menu ul li:first-child{
+        font-weight: 700;
+        padding-left: 0.2rem;
+        border-left: 0.3rem solid var(--green)
+    }
+
+    nav .menu ul li a:hover{
+        text-decoration: none;
+    }
+
+    nav .menu ul li a:focus {
+        font-weight: 700;
+    }
+
+
+    nav .menu .search {
+        display: flex;
+    }
+
+    nav .menu .search #search-box {
+        width: 23rem;
+        height: 4.4rem;
+        padding-left: 2.5rem;
+        
+        border: none;
+        border-radius: 0.4rem 0 0 0.4rem;
+    
+        color: var(--white);
+        font-family: var(--roboto);
+        background-color: var(--dark-bg);
+    }
+
+    nav .menu .search #search-box::placeholder {
+        color: var(--white);
+    }
+
+    nav .menu .search button {
+        background-color: var(--button-bg);
+        border: none;
+    
+        border-radius: 0 0.4rem 0.4rem 0;
+        width: 7rem;
+        height: 4.4rem;
+    }
+
+    nav .menu .search button:active {
+        background-color: var(--button-active);
+    }
+    
+    nav .menu .search button img {
+        width: 2.4rem;
+        height: 2.4rem
+    }
+
+    /* ======= HEADER ======= */
+
+    header {
+        padding-bottom: 6.4rem;
+    }
+
+    header .wrapper {
+        display: flex;
+        gap: 3rem
+    }
+
+
+    header .preview h1 a{
+       font-size: 3.6rem;
+    }
+
+    header .preview p {
+        max-width: 47rem;
+        font-size: 1.8rem;
+    }
+
+    header img {
+        width: 57rem;
+    }
+
+    /* ======= GLOBAL-SECTION ======= */
+    section .preview .publicationDate {
+        margin-top: 1rem;
+    }
+
+
+    /* ======= FIRST-SECTION ======= */
+
+    section:first-of-type .wrapper{
+        display: flex;
+        gap: 13rem;
+        margin-block: 4.4rem;
+    }
+
+    section:first-of-type .preview {
+        width: 57rem;
+        border-bottom: none;
+    }
+
+    section:first-of-type .column .preview {
+        width: 42.7rem
+    }
+    
+    section:first-of-type .column .preview:first-child {
+        border-bottom: 0.2rem solid hsl(271, 100%, 95%);
+    }
+
+    /* ======= SECOND-SECTION ======= */
+
+    section .wrapper{
+        display: flex;
+        gap: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    section .preview {
+        border-bottom: none;
+    }
+}
+
+
